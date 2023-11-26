@@ -205,7 +205,7 @@ export default function Home() {
           </div>
           <ul className="flex items-center">
             <li className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100"><BsFillMoonStarsFill  onClick={() =>  setColorMode(colorMode === "light" ? "dark" : "light")} className="cursor-pointer text-2xl dark:text-white "/></li>
-            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200"><a  href="https://drive.google.com/file/d/1jDX9EZxuEI7p7rL_8S2tpOZ0_Tsqzus3/view"  download="mouli.pdf"  className=" bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3  ">Resume</a></li>
+            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200"><a  href="https://drive.google.com/file/d/1ebNdtXwypsEhXa4LQaxg4aRJW1tIM8ZP/view"  download="MouliS.pdf"  className=" bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3  ">Resume</a></li>
           </ul>
         </nav>
         <motion.div initial={"offscreen"}
