@@ -29,6 +29,8 @@ import rocket from "../public/rocket.gif"
 import  Image2 from "../public/image2.jpg"
 import { useState } from "react";
 import {motion,AnimatePresence} from "framer-motion"
+import { FiDownload } from "react-icons/fi";
+import { Typewriter } from "react-simple-typewriter";
 
 
 const imageAnimate={
@@ -184,7 +186,66 @@ const items = [
 export default function Home() {
   const [colorMode, setColorMode] = useColorMode();
 
-  const [selectedId, setSelectedId] = useState(null)
+  const [selectedId, setSelectedId] = useState(null);
+
+  // Parent container to handle staggered children
+const containerVariants = {
+  onscreen: {
+    transition: {
+      staggerChildren: 0.25, // delay between each card
+    },
+  },
+};
+
+// Each card animation
+const cardVariants = {
+  offscreen: { opacity: 0, y: 80 },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 20,
+      duration: 0.9, // smoother entry
+    },
+  },
+};
+
+// Unique container animation for skills section
+const skillsContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // delay between each skill card
+    },
+  },
+};
+
+// Each skill card animation
+const skillItemVariants = {
+  hidden: { opacity: 0, scale: 0.5, y: 50 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 120, damping: 18 },
+  },
+};
+
+  const skills = [
+    { src: html, alt: "HTML" },
+    { src: css, alt: "CSS" },
+    { src: js, alt: "JavaScript" },
+    { src: r, alt: "React" },
+    { src: tailwind, alt: "Tailwind CSS" },
+    { src: j, alt: "Java" },
+    { src: s, alt: "Spring Boot" },
+    { src: node1, alt: "Node.js" },
+    { src: mysql1, alt: "MySQL" },
+    { src: mongodb1, alt: "MongoDB" },
+  ];
 
   return (
    
@@ -205,29 +266,53 @@ export default function Home() {
           </div>
           <ul className="flex items-center">
             <li className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100"><BsFillMoonStarsFill  onClick={() =>  setColorMode(colorMode === "light" ? "dark" : "light")} className="cursor-pointer text-2xl dark:text-white "/></li>
-            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200"><a  href="https://drive.google.com/file/d/1XkxvBkmHnX558tJqjrwx5v1ebP50lGLZ/view?usp=sharing"  download="resume.pdf"  className=" bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3  ">Resume</a></li>
-          </ul>
-        </nav>
-        <motion.div initial={"offscreen"}
-        whileInView={"onscreen"} viewport={{once:false}} variants={textAnimate} className="text-center p-3">
-          
-        <span
-      className="inline-flex  font-semibold pt-2 overflow-x-hidden animate-type whitespace-nowrap text-brand-accent will-change-transform"
-    >
-      <h2 className="text-5xl py-3 dark:text-white ">Hi, I'm  </h2>
-      <br/>
-       <h2 className="text-5xl text-teal-500 py-3 px-2 "> Mouli S</h2>
-    </span>
-          
-          <h3 className="text-3xl  py-3 dark:text-white">Web Developer and Designer</h3>
-       
- 
+           <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200">
+      <a
+        href="https://drive.google.com/file/d/1K4eqLPp4yHAOjMzAkFB9Nwc7d4Pn8gDm/view?usp=sharing"
+        download="resume.pdf"
+        className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 flex items-center justify-center"
+      >
+        {/* Desktop Text */}
+        <span className="hidden sm:inline text-white font-medium">Resume</span>
 
-          <p   className="text-medium  py-3 dark:text-gray-300">
-            Freelancer providing for programming and design content needs.Join me down below and let's get cracking!
-          </p>
-         
-        </motion.div>
+        {/* Mobile Icon */}
+        <span className="sm:hidden text-white text-xl">
+          <FiDownload />
+        </span>
+      </a>
+    </li>
+     </ul>
+        </nav>
+        <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 1 }}
+      className="text-center p-3"
+    >
+      <h2 className="text-5xl py-3 dark:text-white">
+        Hi, I'm{" "}
+        <span className="text-teal-500">
+          <Typewriter
+            words={["Mouli S"]}
+            loop={1}
+            cursor
+            cursorStyle="|"
+            typeSpeed={120}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </span>
+      </h2>
+
+      <h3 className="text-3xl py-3 dark:text-white">
+        Web Developer and Designer
+      </h3>
+
+      <p className="text-medium py-3 dark:text-gray-300">
+        Freelancer providing programming and design content needs. Join me down below and let's get cracking!
+      </p>
+    </motion.div>
         <div className="text-4xl flex justify-center gap-5 py-3 text-gray-700 dark:text-gray-400">
          <a href="https://github.com/MouliSri"><AiFillGithub className="hover:text-teal-500" /></a> 
          <a href="https://www.linkedin.com/in/mouli-s/" ><AiFillLinkedin className="hover:text-teal-500"/></a>
@@ -246,89 +331,124 @@ export default function Home() {
       </section>
 
 
+   <div className="px-10">
+      <h1 className="text-3xl py-3 mt-20 text-center dark:text-white font-bold">
+        Experience & Education
+      </h1>
+      <hr className="h-1 w-24 mx-auto border-none bg-teal-500 mb-20" />
+
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: false, amount: 0.2 }}
+        variants={containerVariants}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+      >
+        {/* School */}
+        <motion.div
+          variants={cardVariants}
+          className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 
+                     shadow-xl p-10 rounded-2xl my-10 
+                     hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 
+                     transition-all duration-500 flex flex-col items-center justify-center"
+        >
+          <Image
+            className="bg-white h-16 w-16 rounded-lg shadow-md"
+            src={school}
+            alt="School Logo"
+          />
+          <h3 className="text-2xl pt-8 pb-2 font-semibold">
+            Platos Academy Higher Secondary School
+          </h3>
+          <h4 className="text-lg font-medium py-2">
+            Specialization: Computer Science & Mathematics
+          </h4>
+          <p className="text-gray-800 dark:text-gray-200 font-medium py-2">
+            2018 – 2019
+          </p>
+        </motion.div>
+
+        {/* College */}
+        <motion.div
+          variants={cardVariants}
+          className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 
+                     shadow-xl p-10 rounded-2xl my-10 
+                     hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 
+                     transition-all duration-500 flex flex-col items-center justify-center"
+        >
+          <Image
+            className="bg-white h-16 w-16 rounded-lg"
+            src={college}
+            alt="College Logo"
+          />
+          <h3 className="text-2xl pt-8 pb-2 font-semibold">
+            Kumaraguru College of Technology
+          </h3>
+          <h4 className="text-lg font-medium py-2">
+            Bachelor of Engineering in Mechatronics
+          </h4>
+          <p className="text-gray-800 dark:text-gray-200 font-medium py-2">
+            2019 – 2023
+          </p>
+        </motion.div>
+
+        {/* Work */}
+        <motion.div
+          variants={cardVariants}
+          className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 
+                     shadow-xl p-10 rounded-2xl my-10 
+                     hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-500 
+                     transition-all duration-500 flex flex-col items-center justify-center"
+        >
+          <Image
+            className="bg-white h-16 w-16 rounded-lg"
+            src={management}
+            alt="Company Logo"
+          />
+          <h3 className="text-2xl pt-8 pb-2 font-semibold">Aspire Systems</h3>
+          <h4 className="text-lg font-medium py-2">Software Developer</h4>
+          <p className="text-gray-800 dark:text-gray-200 font-medium py-2">
+            Jan 2024 – Present
+          </p>
+        </motion.div>
+      </motion.div>
+    </div>
+
+
       <div className="px-10">
-      <h1 className="text-3xl  py-3 mt-20  text-center dark:text-white font-bold">Experience & Education</h1>
-      <hr  className=" h-1 w-24  text-center mx-auto border-none bg-teal-500 mb-20"/>
+      <h1 className="text-3xl py-3 mt-20 text-center dark:text-white font-bold">
+        Technical Skills
+      </h1>
+      <hr className="h-1 w-24 text-center mx-auto border-none bg-teal-500 mb-20" />
 
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-      
-       
-       <motion.div  initial={"offscreen"}
-        whileInView={"onscreen"} viewport={{once:false}} variants={textAnimate} className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 shadow-xl p-10 rounded-xl my-10 hover:bg-gradient-to-r from-cyan-500 to-teal-500    duration-500 flex  flex-col items-center justify-center">
-       <Image  className="bg-white h-16 w-16  rounded-lg"src={school}/>
-          <h3 className="text-2xl pt-8 pb-2 font-semibold">Platos Academy Higher Secondary School</h3>
-         <h4 className=" text-lg font-medium py-2">Computer Science & Maths</h4>
-            <p className="text-gray-800  font-medium py-2">year-2018 to 2019</p>
-       </motion.div>
-
-<motion.div initial={"offscreen"}
-        whileInView={"onscreen"} viewport={{once:false}} variants={textAnimate} className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 shadow-xl p-10 rounded-xl my-10 hover:bg-gradient-to-r from-cyan-500 to-teal-500  duration-500  flex  flex-col items-center justify-center">
-<Image  className="bg-white h-16 w-16  rounded-lg "src={college}/>
-<h3 className="text-2xl pt-8 pb-2 font-semibold">Kumaraguru College Of Technology</h3>
-<h4 className=" text-lg font-medium py-2 ">BE Mechatronics Engineering</h4>
-<p className="text-gray-800  font-medium py-2">year-2019 to 2023</p>
-</motion.div> 
-
-<motion.div  initial={"offscreen"}
-        whileInView={"onscreen"} viewport={{once:false}} variants={textAnimate} className="text-center dark:bg-gradient-to-r dark:from-cyan-500 dark:to-teal-500 shadow-xl p-10 rounded-xl my-10 hover:bg-gradient-to-r from-cyan-500 to-teal-500  duration-500 flex flex-col items-center justify-center">
-<Image  className="bg-white h-16 w-16  rounded-lg "src={management}/>
-<h3 className="text-2xl pt-8 pb-2 font-semibold">Aspire System</h3>
-<h4 className=" text-lg font-medium py-2">Software Analyst Intern</h4>
-<p className="text-gray-800  font-medium py-2">year-2023 Jan to March</p>
-</motion.div>
-
-
-       </div>
-
-      </div>
-
-
-      <div  className="px-10">
-        <h1 className="text-3xl  py-3 mt-20  text-center dark:text-white font-bold">Technical Skills</h1>
-        <hr  className=" h-1 w-24  text-center mx-auto border-none bg-teal-500 mb-20"/>
-
-        <div className=" grid grid-cols-4 gap-5 justify-center py-10 hover:grid-cols-6 duration-500 delay-500 px-5">
-          <div>
-           <Image src={html} className="h-30 w-40 rounded-md overflow-hidden hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image src={css} className="h-30 w-40 rounded-md overflow-hidden hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={js} className="h-30 w-40 rounded-md overflow-hidden hover:animate-pulse "/>
-          </div>
-      
-          
-          <div>
-            <Image src={r} className="h-30 w-40 rounded-md overflow-hidden  hover:animate-pulse "/>
-          </div>
-          
-          <div>
-            <Image  src={tailwind} className="h-30 w-40 rounded-md overflow-hidden hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={j} className="h-30 w-40 rounded-md overflow-hidden hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={s} className="h-30 w-40 rounded-md overflow-hidden  hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={node1} className="h-30 w-40 rounded-md overflow-hidden bg-white hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={mysql1} className="h-30 w-40 rounded-md overflow-hidden  bg-white hover:animate-pulse "/>
-          </div>
-          <div>
-            <Image  src={mongodb1} className="h-30 w-40 rounded-md overflow-hidden  bg-white hover:animate-pulse "/>
-          </div>
-         
-          
-         
-
-        </div>
-       
-      </div>
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-center py-10 px-5"
+        variants={skillsContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
+        {skills.map((skill, index) => (
+          <motion.div
+            key={index}
+            variants={skillItemVariants}
+            whileHover={{
+              scale: 1.15,
+              rotate: 6,
+              transition: { type: "spring", stiffness: 200 },
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center justify-center p-4 bg-white dark:bg-gray-800 shadow-lg rounded-xl cursor-pointer"
+          >
+            <Image
+              src={skill.src}
+              alt={skill.alt}
+              className="h-20 w-20 object-contain"
+            />
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
       
 
 
@@ -337,7 +457,7 @@ export default function Home() {
        <h1 className="text-4xl  py-3 mt-20  text-center dark:text-white">Projects</h1>
        <hr  className=" h-1 w-24  text-center mx-auto border-none bg-teal-500 mb-20"/>
 
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-20  ">
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 m-20  ">
 
    
       {items.map((item) => (
@@ -544,7 +664,7 @@ export default function Home() {
 
       <footer className="text-center font-[Poppins] text-gray-800 dark:text-white dark:bg-black  border-black border-y-0  shadow-inner  py-5">
         <h2 className="text-lg py-2 ">Thanks For Visiting The Page❤</h2>
-        <h3 className="text-lg py-2">Contact Us</h3>
+        <h3 className="text-lg py-2">Contact</h3>
         <div className="md:flex flex-row   items-center justify-center md:gap-7">
         <a href='tel:7825010293'><p className="py-2 "><AiOutlinePhone  className="mx-auto text-xl hover:text-teal-900 hover:animate-bounce"/>Mobile-<span className=" hover:text-teal-900">7825010293</span></p></a>
         <a href='mailto:moulisunderaj66@gmail.com?subject=Contact&body=Hello!'><p className="py-2"><AiOutlineMail className="mx-auto text-xl hover:text-teal-900 hover:animate-bounce "/><span className=" hover:text-teal-900">moulisunderaj66@gmail.com</span></p></a>
