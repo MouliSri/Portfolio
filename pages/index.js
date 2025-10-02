@@ -266,6 +266,7 @@ const skillItemVariants = {
           </div>
           <ul className="flex items-center">
             <li className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100"><BsFillMoonStarsFill  onClick={() =>  setColorMode(colorMode === "light" ? "dark" : "light")} className="cursor-pointer text-2xl dark:text-white "/></li>
+<<<<<<< HEAD
            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200">
       <a
         href="https://drive.google.com/file/d/1K4eqLPp4yHAOjMzAkFB9Nwc7d4Pn8gDm/view?usp=sharing"
@@ -274,6 +275,25 @@ const skillItemVariants = {
       >
         {/* Desktop Text */}
         <span className="hidden sm:inline text-white font-medium">Resume</span>
+=======
+            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200"><a  href="https://drive.google.com/file/d/1ebNdtXwypsEhXa4LQaxg4aRJW1tIM8ZP/view"  download="MouliS.pdf"  className=" bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3  ">Resume</a></li>
+          </ul>
+        </nav>
+        <motion.div initial={"offscreen"}
+        whileInView={"onscreen"} viewport={{once:false}} variants={textAnimate} className="text-center p-3">
+          
+        <span
+      className="inline-flex  font-semibold pt-2 overflow-x-hidden animate-type whitespace-nowrap text-brand-accent will-change-transform"
+    >
+      <h2 className="text-5xl py-3 dark:text-white ">Hi, I'm  </h2>
+      <br/>
+       <h2 className="text-5xl text-teal-500 py-3 px-2 "> Mouli S</h2>
+    </span>
+          
+          <h3 className="text-3xl  py-3 dark:text-white">Web Developer and Designer</h3>
+       
+ 
+>>>>>>> b84a5a4c232e480fad2d6654bf3be993b7602815
 
         {/* Mobile Icon */}
         <span className="sm:hidden text-white text-xl">
