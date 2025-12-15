@@ -667,7 +667,7 @@ const skillItemVariants = {
         <h3 className="text-lg py-2">Contact</h3>
         <div className="md:flex flex-row   items-center justify-center md:gap-7">
         <a href='tel:7825010293'><p className="py-2 "><AiOutlinePhone  className="mx-auto text-xl hover:text-teal-900 hover:animate-bounce"/>Mobile-<span className=" hover:text-teal-900">7825010293</span></p></a>
-        <a href='mailto:moulisunderaj66@gmail.com?subject=Contact&body=Hello!'><p className="py-2"><AiOutlineMail className="mx-auto text-xl hover:text-teal-900 hover:animate-bounce "/><span className=" hover:text-teal-900">moulisunderaj66@gmail.com</span></p></a>
+        <a href='mailto:mouli.sphms@gmail.com?subject=Contact&body=Hello!'><p className="py-2"><AiOutlineMail className="mx-auto text-xl hover:text-teal-900 hover:animate-bounce "/><span className=" hover:text-teal-900">mouli.sphms@gmail.com</span></p></a>
         </div>
       </footer>
 
