@@ -268,7 +268,7 @@ const skillItemVariants = {
             <li className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-100"><BsFillMoonStarsFill  onClick={() =>  setColorMode(colorMode === "light" ? "dark" : "light")} className="cursor-pointer text-2xl dark:text-white "/></li>
            <li className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200">
       <a
-        href="https://drive.google.com/file/d/15triZbOe88AHqkL7GyqjznIjo6Su_UPc/view"
+        href="https://drive.google.com/file/d/1LtGAA7HQJuOuorLXdw_63vxLEnVxDyip/view"
         download="resume.pdf"
         className="bg-gradient-to-r from-cyan-500 to-teal-500 rounded-md px-4 py-2 ml-3 flex items-center justify-center"
       >
